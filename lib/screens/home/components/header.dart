@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:productify/components/header.dart';
 import 'package:productify/constans.dart';
 import 'package:productify/generated/l10n.dart';
+import 'package:productify/screens/new_task/new_task_screen.dart';
 
 class HomeScreenHeader extends StatelessWidget implements PreferredSizeWidget{
   const HomeScreenHeader({
@@ -14,6 +15,7 @@ class HomeScreenHeader extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return Header(
+      oldContext: context,
       title: S.of(context).app_bar_title,
       backBtn: false,
       actions: <Widget>[
@@ -27,7 +29,14 @@ class HomeScreenHeader extends StatelessWidget implements PreferredSizeWidget{
           child: GestureDetector(
             child: Icon(Icons.add_outlined,
                   size: 26, color: kPrimaryColor),
-            onTap: () { print("I was tapped!"); },
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (oldContext) => NewTaskScreen()
+                )
+              );
+            },
           ),
       ),
       ],

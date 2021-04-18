@@ -3,11 +3,12 @@ import 'package:productify/constans.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
 
-  String title = '';
-  bool backBtn = false;
+  BuildContext oldContext;
+  String title;
+  bool backBtn;
   final List<Widget> actions;
   
-  Header({Key key, this.title, this.backBtn, this.actions}) : super(key: key);
+  Header({Key key, this.title = '', this.backBtn = false, this.oldContext, this.actions}) : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(56);
@@ -15,7 +16,6 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
         title: Text(this.title, style: TextStyle(
           color: kTextColorBlack,
           fontWeight: FontWeight.bold,
@@ -31,7 +31,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           child: GestureDetector(
             child: Icon(Icons.arrow_back_ios_rounded,
                   size: 20, color: kPrimaryColor),
-            onTap: () { print("I was tapped!"); },
+            onTap: () => Navigator.of(oldContext).pop(),
           ),
         ) : null,
 
