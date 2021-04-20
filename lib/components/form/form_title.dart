@@ -9,10 +9,21 @@ class FormTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      child: Text("Вид задачи")
-      );
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          margin: EdgeInsets.only(bottom: 10),
+          child: Text(title, style: TextStyle(
+            color: Color(0xFF6B7A89),
+            fontSize: 18.0,
+            fontWeight: FontWeight.w500
+          ))
+          ),
+      ],
+    );
   }
 
 }

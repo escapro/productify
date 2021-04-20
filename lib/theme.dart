@@ -5,6 +5,8 @@ ThemeData defaultThemeData(BuildContext context) {
   return ThemeData(
     brightness: Brightness.light,
     primaryColor: kPrimaryColor,
+    colorScheme: ColorScheme.light(primary: kPrimaryColor),
+    buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
     fontFamily: 'Montserrat',
     appBarTheme: AppBarTheme(
       color: Colors.white,

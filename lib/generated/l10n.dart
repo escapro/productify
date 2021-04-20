@@ -64,6 +64,76 @@ class S {
       args: [],
     );
   }
+
+  /// `M`
+  String get week1 {
+    return Intl.message(
+      'M',
+      name: 'week1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `T`
+  String get week2 {
+    return Intl.message(
+      'T',
+      name: 'week2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `W`
+  String get week3 {
+    return Intl.message(
+      'W',
+      name: 'week3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `T`
+  String get week4 {
+    return Intl.message(
+      'T',
+      name: 'week4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `F`
+  String get week5 {
+    return Intl.message(
+      'F',
+      name: 'week5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `S`
+  String get week6 {
+    return Intl.message(
+      'S',
+      name: 'week6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `S`
+  String get week7 {
+    return Intl.message(
+      'S',
+      name: 'week7',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

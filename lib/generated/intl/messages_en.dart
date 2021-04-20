@@ -23,6 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "app_bar_title" : MessageLookupByLibrary.simpleMessage("MAIN"),
     "main_title" : MessageLookupByLibrary.simpleMessage("MAIN TITLE"),
-    "today_tasks" : MessageLookupByLibrary.simpleMessage("Today tasks")
+    "today_tasks" : MessageLookupByLibrary.simpleMessage("Today tasks"),
+    "week1" : MessageLookupByLibrary.simpleMessage("M"),
+    "week2" : MessageLookupByLibrary.simpleMessage("T"),
+    "week3" : MessageLookupByLibrary.simpleMessage("W"),
+    "week4" : MessageLookupByLibrary.simpleMessage("T"),
+    "week5" : MessageLookupByLibrary.simpleMessage("F"),
+    "week6" : MessageLookupByLibrary.simpleMessage("S"),
+    "week7" : MessageLookupByLibrary.simpleMessage("S")
   };
 }

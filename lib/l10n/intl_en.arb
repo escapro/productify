@@ -1,5 +1,12 @@
 {
     "app_bar_title": "MAIN",
     "main_title": "MAIN TITLE",
-    "today_tasks": "Today tasks"
+    "today_tasks": "Today tasks",
+    "week1": "M",
+    "week2": "T",
+    "week3": "W",
+    "week4": "T",
+    "week5": "F",
+    "week6": "S",
+    "week7": "S"
 }
