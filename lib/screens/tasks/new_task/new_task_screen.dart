@@ -29,7 +29,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   int _priority = 1;
   TimeOfDay _reminder;
   int _icon;
-  int _flow;
+  int _flow = 1;
 
   @override
   void dispose() {
@@ -39,14 +39,6 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    // Task myTask = new Task(
-    //   TaskType.task(),
-    //   "dsf",
-    //   TaskRepeatability.regular(context, [1,2,3]),
-    //   Workflow()
-    // );
-
     return Scaffold(
       appBar: Header(
         oldContext: context,
@@ -57,9 +49,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
             oldContext: context,
             icon: Icons.check,
             onTap: () => {
-              if (_formKey.currentState.validate()) {
-               
-              }
+              if (_formKey.currentState.validate()) createTask()
             },
           )
         ],
@@ -125,7 +115,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                     ),
                     ModalSelect(
                       title: "Выбор потока",
-                      items: ["Работа", "Youtube", "Сайт"],
+                      value: _flow,
+                      items: Workflow.fetchAll().map((e) => e['title'].toString()).toList(),
                       onChange: (value) => setState(() => {_flow=value}),
                     )
                   ],
@@ -136,7 +127,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                       title: 'Приоритет',
                     ),
                     ButtonSelect(
-                      items: ['ВЫСОКИЙ', 'СРЕДНИЙ', 'НИЗКИЙ'],
+                      items: TaskPriority.list,
                       onChange: (values) => setState(() => {_priority=values}),
                     )
                   ],
@@ -173,5 +164,44 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         ),
       ),
     );
+  }
+
+  createTask() {
+
+    TaskType type;
+    TaskRepeatability repeatability;
+    TaskPriority priority;
+
+    if(_type == 1) {
+      type = new TaskType.task();
+    }else if(_type == 2) {
+      type = new TaskType.activity();
+    }
+
+    if(_repeatability == 1) {
+      repeatability = new TaskRepeatability.regular(context, _repeatability_weeks);
+    }else if(_repeatability == 2) {
+      repeatability = new TaskRepeatability.once(context);
+    }
+
+    if(_priority == 1) {
+      priority = new TaskPriority.hight();
+    }else if(_priority == 2) {
+      priority = new TaskPriority.medium();
+    }else if(_priority == 3) {
+      priority = new TaskPriority.low();
+    }
+
+    Task newTask = new Task(
+      type: type,
+      name: _taskTitle.text,
+      repeatability: repeatability,
+      flow: Workflow.fetch(_flow),
+      priority: priority,
+      reminder: _reminder != null ? TaskReminder(_reminder.hour, _reminder.minute) : null,
+      icon: _icon != null ? IconData(_icon, fontFamily: 'MaterialIcons') : null
+    );
+
+    // print(newTask.create());
   }
 }

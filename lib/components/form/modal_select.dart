@@ -41,7 +41,7 @@ class _ModalSelectState extends State<ModalSelect> {
     WidgetsBinding.instance.addPostFrameCallback((_) => {
       if(widget.value != null) {
         setState(() {
-          _value = widget.value;
+          _value = widget.value - 1;
         })
       } 
     });
@@ -186,7 +186,7 @@ class _ModalSelectState extends State<ModalSelect> {
 
     setState(() {
       _value = index;
-      widget.onChange(index);
+      widget.onChange(index + 1);
     });
 
     selectModalDialog.close();
