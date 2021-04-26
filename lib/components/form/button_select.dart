@@ -30,7 +30,7 @@ class _ButtonSelectState extends State<ButtonSelect> {
               child: Container(
                 margin: widget.items.length != i+1 ? EdgeInsets.only(right: 10) : null,
                 padding: EdgeInsets.all(10),
-                height: 60,
+                height: kDefaultElementHeight,
                 decoration: BoxDecoration(
                   color: _value != i+1 ? Color(0xFFF1F2F5) : kPrimaryColor,
                   borderRadius: BorderRadius.circular(10)
@@ -38,7 +38,7 @@ class _ButtonSelectState extends State<ButtonSelect> {
                 child: Center(child:
                   Text(widget.items[i].toString(), style: TextStyle(
                     color: _value != i+1 ? kSecondaryColor : Colors.white,
-                    fontSize: 14.0,
+                    fontSize: 13.0,
                     fontWeight: FontWeight.bold
                   ))
                 )

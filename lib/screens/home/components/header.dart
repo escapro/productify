@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:productify/components/header.dart';
-import 'package:productify/constans.dart';
+import 'package:productify/components/rect_icon_button.dart';
 import 'package:productify/generated/l10n.dart';
-import 'package:productify/screens/new_task/new_task_screen.dart';
+import 'package:productify/screens/tasks/new_task/new_task_screen.dart';
 
 class HomeScreenHeader extends StatelessWidget implements PreferredSizeWidget{
   const HomeScreenHeader({
@@ -19,26 +19,34 @@ class HomeScreenHeader extends StatelessWidget implements PreferredSizeWidget{
       title: S.of(context).app_bar_title,
       backBtn: false,
       actions: <Widget>[
-        Container(
-          margin: EdgeInsets.all(10.0),
-          width: 38,
-          decoration: BoxDecoration(
-            color: kPrimaryLightColor,
-            borderRadius: BorderRadius.all(Radius.circular((5))),
+        RectIconButton(
+          oldContext: context,
+          icon: Icons.add,
+          // onTap: () => Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (oldContext) => NewTaskScreen()
+          //   )
+          // ),
+          onTap: () => Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) => NewTaskScreen(),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                var begin = Offset(0.0, 1.0);
+                var end = Offset.zero;
+                var curve = Curves.ease;
+
+                var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: child,
+                );
+              },
+            )
+            ),
           ),
-          child: GestureDetector(
-            child: Icon(Icons.add_outlined,
-                  size: 26, color: kPrimaryColor),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (oldContext) => NewTaskScreen()
-                )
-              );
-            },
-          ),
-      ),
       ],
     );
   }

@@ -3,7 +3,7 @@ import 'package:productify/constans.dart';
 
 class FormGroup extends StatelessWidget {
 
-  List<Widget> children;
+  final List<Widget> children;
 
   FormGroup({
     Key key, this.children
@@ -12,7 +12,7 @@ class FormGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: kDefaultPadding + 10),
+      margin: EdgeInsets.only(bottom: kDefaultPadding + 5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

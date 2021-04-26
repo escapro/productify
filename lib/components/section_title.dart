@@ -15,9 +15,9 @@ class SectionTitle extends StatelessWidget {
       children: [
         Container(
                 padding: EdgeInsets.all(kDefaultPadding),
-                child: Text(title, style: TextStyle(
+                child: Text(title, 
+                style: Theme.of(context).textTheme.headline5.copyWith(
                   color: kSecondaryColor,
-                  fontSize: 28,
                   fontWeight: FontWeight.bold
                 ))
               ),

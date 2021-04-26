@@ -20,9 +20,9 @@ ThemeData lightThemeData(BuildContext context) {
   return ThemeData.light().copyWith(
     primaryColor: kPrimaryColor,
     primaryTextTheme: TextTheme(
-      title: TextStyle(
-        color: kTextColorBlack
-      )
+      // title: TextStyle(
+      //   color: kTextColorBlack
+      // )
     ),
     appBarTheme: AppBarTheme(
       color: Colors.white,

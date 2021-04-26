@@ -48,7 +48,6 @@ class _WeekSelectionState extends State<WeekSelection> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      margin: EdgeInsets.only(top: 25),
       child: generateButtons(context)
     );
   }
@@ -86,7 +85,7 @@ class _WeekSelectionState extends State<WeekSelection> {
                   color: isActive ? kPrimaryColor : kPrimaryLightGreyColor
                 ),
                 child: Center(child: Text(text, style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 15.0,
                   fontWeight: FontWeight.bold,
                   color: isActive ? Colors.white : kSecondaryColor
                 ))),

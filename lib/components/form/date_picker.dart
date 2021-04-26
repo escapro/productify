@@ -8,7 +8,7 @@ class DatePickerType {
 
 class DatePicker extends StatefulWidget {
 
-  TimeOfDay controller;
+  final TimeOfDay controller;
   final int type;
   final Function onChange;
 
@@ -133,7 +133,7 @@ class _DatePickerState extends State<DatePicker> {
       });
 
     }else if(widget.type == DatePickerType.date){
-      Future<DateTime> selectedDate = showDatePicker(
+      showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),

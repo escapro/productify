@@ -18,7 +18,7 @@ class FormTitle extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 10),
           child: Text(title, style: TextStyle(
             color: Color(0xFF6B7A89),
-            fontSize: 18.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.w500
           ))
           ),

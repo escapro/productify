@@ -4,9 +4,9 @@ import 'package:productify/constans.dart';
 
 class Alert extends StatelessWidget {
 
-  List<String> types = ['info', 'warning', 'error', 'success'];
-  String type;
-  String text;
+  final List<String> types = ['info', 'warning', 'error', 'success'];
+  final String type;
+  final String text;
 
   Alert({
     Key key, this.type, this.text

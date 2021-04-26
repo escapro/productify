@@ -14,6 +14,7 @@ class Input extends StatelessWidget {
   final Widget icon;
   final Widget suffixIcon;
   final FocusNode focusNode;
+  final FormFieldValidator validation;
 
   const Input({
     Key key,
@@ -27,18 +28,20 @@ class Input extends StatelessWidget {
     this.margin,
     this.onTap,
     this.onChanged,
-    this.maxLines
+    this.maxLines,
+     this.validation
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: maxLines == 1 || maxLines == null ? 50 : null,
-      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0),
+      // height: maxLines == 1 || maxLines == null ? 50 : null,
+      // padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0),
       margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
-          color: Color(0xFFF1F2F5)),
+          // color: Color(0xFFF1F2F5)
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,31 +52,43 @@ class Input extends StatelessWidget {
                 child: icon,
               ),
               Expanded(
-                child: TextField(
+                child: TextFormField(
                   controller: controller,
                   focusNode: focusNode,
                   maxLength: maxLenght,
                   maxLines: maxLines,
+                  textAlignVertical: TextAlignVertical.center,
                   keyboardType: keyboardType == null ? TextInputType.text : keyboardType,
                   style: TextStyle(
                     color: Color(0xFF33475B),
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500
                   ),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
+                  decoration: new InputDecoration(
+                    contentPadding: new EdgeInsets.symmetric(vertical: 15.0, horizontal: kDefaultPadding),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                            width: 0, 
+                            style: BorderStyle.none,
+                        ),
+                    ),
+                    filled: true,
+                    fillColor: Color(0xFFF1F2F5),
                     counterText: '',
+                    errorBorder: new OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                            color: Colors.red,
+                            width: 1,
+                        ),
+                    ),
                     hintText: placeholder,
                     hintStyle: const TextStyle(color: Colors.grey),
                   ),
+                  validator: validation != null ? validation : null,
                   onTap: onTap,
-                  onChanged: (value) {
-                    onChanged(value);
-                  },
+                  onChanged: onChanged != null ? (value) => onChanged(value) : null,
                 ),
               ),
               if(suffixIcon != null)
