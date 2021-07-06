@@ -12,6 +12,11 @@ import 'package:productify/components/form/icon_picker.dart';
 import 'package:productify/components/rect_icon_button.dart';
 import 'package:productify/constans.dart';
 import 'package:productify/models/task.dart';
+import 'package:productify/services/db.dart';
+import 'package:productify/types/task_priority.dart';
+import 'package:productify/types/task_reminder.dart';
+import 'package:productify/types/task_repeatability.dart';
+import 'package:productify/types/task_type.dart';
 import 'package:productify/models/workflow.dart';
 
 class NewTaskScreen extends StatefulWidget {
@@ -166,11 +171,11 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     );
   }
 
-  createTask() {
+  createTask() async {
 
     TaskType type;
     TaskRepeatability repeatability;
-    TaskPriority priority;
+    TaskReminder reminder;
 
     if(_type == 1) {
       type = new TaskType.task();
@@ -184,24 +189,29 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       repeatability = new TaskRepeatability.once(context);
     }
 
-    if(_priority == 1) {
-      priority = new TaskPriority.hight();
-    }else if(_priority == 2) {
-      priority = new TaskPriority.medium();
-    }else if(_priority == 3) {
-      priority = new TaskPriority.low();
+    if(_reminder != null) {
+      reminder = TaskReminder(_reminder.hour, _reminder.minute);
     }
 
     Task newTask = new Task(
-      type: type,
-      name: _taskTitle.text,
-      repeatability: repeatability,
-      flow: Workflow.fetch(_flow),
-      priority: priority,
-      reminder: _reminder != null ? TaskReminder(_reminder.hour, _reminder.minute) : null,
-      icon: _icon != null ? IconData(_icon, fontFamily: 'MaterialIcons') : null
+      type: type.id,
+      name: _taskTitle.text != '' ? _taskTitle.text : null,
+      repeatability: repeatability.id,
+      flowId: _flow,
+      priority: _priority,
+      reminder: reminder != null ? reminder.getString() : null,
+      icon: _icon
     );
 
-    // print(newTask.create());
+    // await DB.execute("DROP TABLE IF EXISTS task");
+
+    if(await DB.insert(newTask.tableName, newTask) != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Задача успешно создана!'))
+      );
+      Navigator.of(context).pop();
+    }
+
+    // Navigator.push(context, MaterialPageRoute(builder: (_) => DatabaseList()));
   }
 }

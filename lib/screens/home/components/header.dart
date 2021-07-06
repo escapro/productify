@@ -5,7 +5,11 @@ import 'package:productify/generated/l10n.dart';
 import 'package:productify/screens/tasks/new_task/new_task_screen.dart';
 
 class HomeScreenHeader extends StatelessWidget implements PreferredSizeWidget{
-  const HomeScreenHeader({
+  
+  final Function callback;
+  
+  HomeScreenHeader({
+    this.callback,
     Key key,
   }) : super(key: key);
 
@@ -45,8 +49,10 @@ class HomeScreenHeader extends StatelessWidget implements PreferredSizeWidget{
                 );
               },
             )
-            ),
-          ),
+          ).then((value) {
+            callback();
+          }),
+        ),
       ],
     );
   }

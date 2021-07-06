@@ -7,7 +7,6 @@ import 'package:productify/constans.dart';
 class TodayTasks extends StatelessWidget {
   const TodayTasks({
     Key key,
-    String title
   }) : super(key: key);
 
   @override
